@@ -1,0 +1,95 @@
+esphome:
+  name: "effektmeter-led"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: ""
+
+ota:
+- platform: esphome
+  password: ""
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Led Fallback Hotspot"
+    password: ""
+
+captive_portal:
+
+# Example configuration entry
+
+
+light:
+  - platform: neopixelbus
+    id: Strip1
+    internal: true
+    type: GRB
+    variant: WS2812
+    pin: GPIO23
+    num_leds: 8
+    name: "NeoPixel Light"
+  - platform: partition
+    name: "Partition Light 1"
+    segments:
+      - id: Strip1
+        from: 0
+        to: 0
+  - platform: partition
+    name: "Partition Light 2"
+    segments:
+      - id: Strip1
+        from: 1
+        to: 1  
+  - platform: partition
+    name: "Partition Light 3"
+    segments:
+      - id: Strip1
+        from: 2
+        to: 2
+  - platform: partition
+    name: "Partition Light 4"
+    segments:
+      - id: Strip1
+        from: 3
+        to: 3  
+  - platform: partition
+    name: "Partition Light 5"
+    segments:
+      - id: Strip1
+        from: 4
+        to: 4
+  - platform: partition
+    name: "Partition Light 6"
+    segments:
+      - id: Strip1
+        from: 5
+        to: 5  
+  - platform: partition
+    name: "Partition Light 7"
+    segments:
+      - id: Strip1
+        from: 6
+        to: 6
+  - platform: partition
+    name: "Partition Light 8"
+    segments:
+      - id: Strip1
+        from: 7
+        to: 7  
+
+sensor:
+  - platform: internal_temperature
+    name: "Internal Temperature"
