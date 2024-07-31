@@ -1,0 +1,16 @@
+alias: L2 Segment 1 Off
+description: 500W
+trigger:
+  - type: power
+    platform: device
+    device_id: 529577b31c2d2aa0e99d5e43fe70b4f4
+    entity_id: sensor.l2_power
+    domain: sensor
+    below: 500
+condition: []
+action:
+  - type: turn_off
+    device_id: 3bd5eca31fcf739eb0c854436538b786
+    entity_id: 21ffb0f915a3a462cd131578d3a183b1
+    domain: light
+mode: single
